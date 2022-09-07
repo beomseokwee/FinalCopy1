@@ -145,6 +145,7 @@ const Header = (props) => {
                                                 }</>
                                             : null
                                     }
+
                                     <FiBell onClick={()=>{
                                         // setCount(count +1)
                                         AlarmMyOpen();
