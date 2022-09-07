@@ -28,7 +28,7 @@ const Header = (props) => {
     const [isUserMyOpen, setIsUserMyOpen] = useState(false);
     const history = useHistory();
     const [isAlarmMyOpen, setIsAlarmMyOpen] = useState(false);
-    const [data, setData] = useState([{content:'111',url:'/chat/sender/room/1'}]);
+    const [data, setData] = useState([]);
     const [alarm, setAlarm] = useState('');
     const [listening, setListening] = useState(false);
     let [toastState, setToastState] = useState(false);
@@ -121,30 +121,7 @@ const Header = (props) => {
                 }} >견적보기</S.MenuList>
                 <S.MenuList onClick={test}>전문가 찾기</S.MenuList>
             </S.MenuBox>
-                        <S.AlarmBox>
-                            {/*{*/}
-                            {/*    data.length != 0  ? <>*/}
-                            {/*            {localStorage.getItem('read')==1 ? null :<Alarm>{count.length}</Alarm>*/}
-                            {/*            }</>*/}
-                            {/*        : null*/}
-                            {/*}*/}
-                            {
-                                data.length != 0  ? <>
-                                        {localStorage.getItem('read')==1 ? null :<Alarm>{count.length}</Alarm>
-                                        }</>
-                                    : null
-                            }
-                            <FiBell onClick={()=>{
-                                // setCount(count +1)
-                                AlarmMyOpen();
-                                console.log(localStorage.getItem('read'))
-                                setRead(1);
-                                setCount([]);
-                                localStorage.setItem('read',read)
-                            }} style={{position:'absolute', top : '50.5%' ,right : '38.2%',margin:'-15px 0px 0px -15px',zIndex:'-1'}}>
-                            </FiBell>
 
-                        </S.AlarmBox>
 
                         <>
                             {
@@ -155,6 +132,30 @@ const Header = (props) => {
                     <S.UserBox>
                         {user_info ? (
                             <>
+                                <S.AlarmBox>
+                                    {
+                                        data.length != 0  ? <>
+                                                {localStorage.getItem('read')==1 ? null :<Alarm>{count.length}</Alarm>
+                                                }</>
+                                            : null
+                                    }
+                                    {
+                                        data.length != 0  ? <>
+                                                {localStorage.getItem('read')==1 ? null :<Alarm>{count.length}</Alarm>
+                                                }</>
+                                            : null
+                                    }
+                                    <FiBell onClick={()=>{
+                                        // setCount(count +1)
+                                        AlarmMyOpen();
+                                        console.log(localStorage.getItem('read'))
+                                        setRead(1);
+                                        setCount([]);
+                                        localStorage.setItem('read',read)
+                                    }} style={{position:'absolute', top : '50.5%' ,right : '38.2%',margin:'-15px 0px 0px -15px',zIndex:'-1'}}>
+                                    </FiBell>
+
+                                </S.AlarmBox>
 
                                 <S.UserImgBox>
                                     {
