@@ -1,6 +1,14 @@
 import React, { useEffect } from 'react';
-
+import Button from '@mui/material/Button';
 const Payment2 = (effect, deps) => {
+
+
+    console.log(text);
+    text = '11';
+    var text
+
+
+
     useEffect(() => {
         const jquery = document.createElement('script');
         jquery.src = 'https://code.jquery.com/jquery-1.12.4.min.js';
@@ -49,10 +57,12 @@ const Payment2 = (effect, deps) => {
     };
 
     return <>
-        <button onClick={()=>
+        <Button variant="contained"
+                style={{backgroundColor:'#F2AA4C'}}
+                onClick={()=>
         {
             onClickPayment()}
-        }>결제하기</button>
+        }>결제하기</Button>
 
     </>;
 };

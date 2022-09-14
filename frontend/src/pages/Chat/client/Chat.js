@@ -5,7 +5,7 @@ import axios from 'axios';
 import {getCookie} from '../../../shared/Cookie';
 import { createAction } from 'redux-actions';
 import { useParams } from 'react-router-dom';
-
+import Payment2 from "../../Payment2";
 function Chat({socket, gosu,user, room}) {
     const [currentMessage, setCurrentMessage] = useState("");
     const [messageList,setMessageList] = useState([]); // 상대방이 보낸 메시지 표시하기위한 변수
@@ -100,9 +100,13 @@ function Chat({socket, gosu,user, room}) {
 
                             {/* 여기서 아이디값주는 이유는 css 적용 */}
                             <div>
-                                <div className='message-content'>
-                                    <p>{messageContent.msg}</p>
-                                </div>
+                                { messageContent.msg == '/결제하기' ?
+                                    <Payment2></Payment2>
+                                    :
+                                    <div className='message-content'>
+                                        <p>{messageContent.msg}</p>
+                                    </div>
+                                }
                                 <div className='message-meta'>
                                     <p id="time">{messageContent.createdAt}</p>
                                     {messageContent.gosu != null?

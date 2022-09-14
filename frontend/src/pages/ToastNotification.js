@@ -6,6 +6,7 @@ import "./Toast.css";
 
 
 function ToastNotification(props) {
+
     function toastClickEvent(props) {
         props.setToastState(false);
     }
@@ -26,7 +27,7 @@ function ToastNotification(props) {
     return (
         <div className={props.toastAnimation} onClick={()=>{toastClickEvent()}}>
             <img alt="" src="/images/alert2.png" />
-            <p>알림이 도착하였습니다!</p>
+            <p style={{fontFamily: 'GamjaFlower-Regular'}}>알림이 도착하였습니다!</p>
         </div>
     );
 }

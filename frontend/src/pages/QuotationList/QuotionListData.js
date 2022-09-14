@@ -4,11 +4,14 @@ import styled from 'styled-components';
 import { RatingStars } from '../../RatingStars';
 import {useSelector} from "react-redux";
 import Loading2 from './Loading2';
+import QuotationNav from "./QuotationNav";
+
 
 function GosuList({ setReviewLength }) {
-    const [gosuLists, setGosuLists] = useState([]);
+    const [ ids, setIds ] = useState([])
+    const [gosuLists, setGosuLists] = useState([{gosuName:'위범석',status:'1'},{gosuName: '범진성'},{gosuName: '얍얍얍'}]);
     useEffect(() => {
-        fetch(`/matchedgosulist`, {
+        fetch(`https://jsonplaceholder.typicode.com/posts`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -21,9 +24,17 @@ function GosuList({ setReviewLength }) {
             .then(res => res.json())
             .then((res)=>  {
                 console.log(res);
-                setGosuLists(res)
+                let a = [{gosuName:'위범석',status:'1',id:1},{gosuName: '범진성',id:2},{gosuName: '얍얍얍',id:3}]
+                let b  = []
+                setGosuLists(a)
+                for (let i =0; i<a.length; i++){
+                    b.push(a[i].id)
+                }
+                setIds(b)
+                console.log(ids)
             });
     }, []);
+
     const [userLists, setUserLists] = useState([]);
     const params = useParams();
     const user_info = useSelector((state) => state.user.user);
@@ -45,8 +56,10 @@ function GosuList({ setReviewLength }) {
                 console.log(localStorage.getItem('email'))
                 console.log(res)
                 setUserLists(res)
+
             });
     }, []);
+
 
     const goToGosuDetail = id => {
         window.location.href = `/GosuInfo/${id}`;
@@ -56,6 +69,11 @@ function GosuList({ setReviewLength }) {
     };
     return (
         <>
+            {ids.length != 0 ?
+                (<QuotationNav ids = {ids} gosuLists = {gosuLists} setGosuLists={setGosuLists} userLists = {userLists} setUserLists = {setUserLists} ></QuotationNav>)
+                :null
+            }
+
             {
                 user_info &&
                 <>
@@ -77,7 +95,8 @@ function GosuList({ setReviewLength }) {
                                                 } = gosuList;
                                                 console.log(gosuList);
                                                 return (
-                                                    <FindGosu
+                                                    <>
+                                                        <FindGosu
                                                         key={i}
                                                         gosuName={gosuName}
                                                         onClick={() => {goToGosuDetail(id);
@@ -92,11 +111,12 @@ function GosuList({ setReviewLength }) {
                                                                     <GosuListComment>전문가의 경력 : {gosuCareer}</GosuListComment>
                                                                     <GosuListComment>전문가의 지역 : {gosuRegion}</GosuListComment>
                                                                     <GosuListComment>전문가의 카테고리 : {gosuCategory}</GosuListComment>
-
                                                                     </>
                                                                 )}
                                                         </GosuListForm>
                                                     </FindGosu>
+
+                                                    </>
                                                 );
                                             })}
                                         </GosuListWrap>):(<GosuListTitle>매칭된 전문가 리스트가 없습니다.</GosuListTitle>)

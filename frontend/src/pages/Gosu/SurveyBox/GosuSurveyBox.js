@@ -23,6 +23,7 @@ import {
 // STYLES
 import * as S from './SurveyBoxEle';
 import {getCookie} from "../../../shared/Cookie";
+// import {carryValue} from "@testing-library/user-event/dist/keyboard/shared";
 // import {info} from "node-sass"; //개새끼
 
 // APIKEY
@@ -51,7 +52,11 @@ function GosuSurveyBox({info}) {
     };
 
     let [currentQ, setCurrentQ] = useState(0);
-
+    console.log(selectedTown)
+    const selectedTown2 = JSON.stringify(selectedTown)
+    console.log(selectedTown2)
+    const address = selectedTown2.slice(1,selectedTown2.length-1)
+    console.log(address)
     const history = useHistory();
 
     // FUNCTIONS
@@ -172,7 +177,9 @@ function GosuSurveyBox({info}) {
         console.log(radioValue.category)
         const age = radioValue.age.slice(0, 2);
         const [career] = radioValue.career.split('~');
+        console.log(career)
         console.log(info)
+        console.log(address)
         fetch(`/user/gosu/signup`, {
             method: 'POST',
             headers: {
@@ -188,7 +195,7 @@ function GosuSurveyBox({info}) {
                 // service: radioValue.service,
                 career: career,
                 gender: radioValue.gender,
-                address: selectedTown,
+                address: address,
             }),
         })
             .then(res => res.json())

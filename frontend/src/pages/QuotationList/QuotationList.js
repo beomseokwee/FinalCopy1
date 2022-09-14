@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import QuotionListData from "./QuotionListData";
 import {useSelector} from "react-redux";
+import QuotationNav from "./QuotationNav";
+
 const QuotationList = () => {
     const [review, setReview] = useState();
     const setReviewLength = data => {

@@ -43,6 +43,7 @@ const Header = (props) => {
             checkInputValues()
             const result = JSON.parse(event.data);
             console.log("received:", result);
+            checkInputValues()
             setData(old => [...old, result])
             setRead(0)
             setCount(old => [...old, result])
@@ -53,9 +54,6 @@ const Header = (props) => {
         }
         setListening(true);
     }
-
-
-
 
     // if ( //로그인, 회원가입 화면에서는 헤더를 보여주지 않음.
     //     window.location.pathname === "/signin"
@@ -113,15 +111,22 @@ const Header = (props) => {
                                 }} src='/images/logo.png' alt="logo" />
                             </S.HomeLink>
                         </S.LogoBox>
-
-            <S.MenuBox>
+                        {localStorage.getItem('role')== 'ROLE_USER' ?
+                            (<S.MenuBox>
                 <S.MenuList onClick={()=>{
                     window.location.href='/QuotationList'
                     // history.push('/QuotationList')
-                }} >견적보기</S.MenuList>
+                }} >의뢰서 보기</S.MenuList>
                 <S.MenuList onClick={test}>전문가 찾기</S.MenuList>
-            </S.MenuBox>
-
+            </S.MenuBox>):
+                            (<S.MenuBox>
+                                <S.MenuList onClick={()=>{
+                                    window.location.href='/QuotationList'
+                                    // history.push('/QuotationList')
+                                }} >견적보기</S.MenuList>
+                                <S.MenuList onClick={test}>전문가 찾기</S.MenuList>
+                            </S.MenuBox>)
+                        }
 
                         <>
                             {
@@ -133,12 +138,12 @@ const Header = (props) => {
                         {user_info ? (
                             <>
                                 <S.AlarmBox>
-                                    {
-                                        data.length != 0  ? <>
-                                                {localStorage.getItem('read')==1 ? null :<Alarm>{count.length}</Alarm>
-                                                }</>
-                                            : null
-                                    }
+                                    {/*{*/}
+                                    {/*    data.length != 0  ? <>*/}
+                                    {/*            {localStorage.getItem('read')==1 ? null :<Alarm>{count.length}</Alarm>*/}
+                                    {/*            }</>*/}
+                                    {/*        : null*/}
+                                    {/*}*/}
                                     {
                                         data.length != 0  ? <>
                                                 {localStorage.getItem('read')==1 ? null :<Alarm>{count.length}</Alarm>
@@ -148,6 +153,7 @@ const Header = (props) => {
 
                                     <FiBell onClick={()=>{
                                         // setCount(count +1)
+
                                         AlarmMyOpen();
                                         console.log(localStorage.getItem('read'))
                                         setRead(1);

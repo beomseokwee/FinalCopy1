@@ -54,6 +54,7 @@ function App(props) {
             <Route path="/signup" exact component={SignUp}/>
             <Route path="/kakaoLogin" exact component={KakaoLogin}/>
             <Route path="/" exact component={Main}/>
+
             <Route path="/QuotationList" exact component={QuotationList}/>
             <Route path="/ChatApp" exact component={ChatApp}/>
             <Route path="/ChatApp/:id" exact component={ChatApp}/>

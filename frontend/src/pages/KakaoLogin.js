@@ -9,13 +9,11 @@ function KakaoLogin() {
     const location = useLocation();
     const KAKAO_CODE = location.search.split('=')[1];
     console.log(KAKAO_CODE)
-    fetch(`/kakao/${KAKAO_CODE}`, {
-        method:'POST',
-        body: JSON.stringify({
-            access: KAKAO_CODE,
-        }),
+    axios({
+        method: "get",
+        url: `/user/kakao/${KAKAO_CODE}`,
     })
-        .then(res => res.json())
+        // .then(res => res.json())
         .then(res => {
             console.log(res)
             const access_token = res.headers.access_token;
@@ -34,19 +32,19 @@ function KakaoLogin() {
         });
 
     return (
-    <Container>
-        <TextBox>
-            {/*<H1>{KAKAO_CODE}</H1>*/}
-            <H1>카카오톡 로그인중 입니다!!~</H1>
-            <TextImg src="/images/4.jpg" alt="winter" />
-        </TextBox>
-        <Loader>
-            <Outer />
-            <Middle />
-            <Inner />
-            <Dot />
-        </Loader>
-    </Container>
+        <Container>
+            <TextBox>
+                {/*<H1>{KAKAO_CODE}</H1>*/}
+                <H1>카카오톡 로그인중 입니다!!~</H1>
+                <TextImg src="/images/4.jpg" alt="winter" />
+            </TextBox>
+            <Loader>
+                <Outer />
+                <Middle />
+                <Inner />
+                <Dot />
+            </Loader>
+        </Container>
 
     );
 }
