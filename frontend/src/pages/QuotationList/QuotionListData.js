@@ -24,7 +24,7 @@ function GosuList({ setReviewLength }) {
             .then(res => res.json())
             .then((res)=>  {
                 console.log(res);
-                let a = [{gosuName:'위범석',status:'1',id:1},{gosuName: '범진성',id:2},{gosuName: '얍얍얍',id:3}]
+                let a = [{gosuName:'위범석',status:'1',id:1},{status:'2',gosuName: '범진성',id:2},{status:0,gosuName: '얍얍얍',id:3}]
                 let b  = []
                 setGosuLists(a)
                 for (let i =0; i<a.length; i++){
@@ -92,6 +92,7 @@ function GosuList({ setReviewLength }) {
                                                     gosuCareer,
                                                     id,
                                                     gosuCategory,
+                                                    status
                                                 } = gosuList;
                                                 console.log(gosuList);
                                                 return (
@@ -114,6 +115,21 @@ function GosuList({ setReviewLength }) {
                                                                     </>
                                                                 )}
                                                         </GosuListForm>
+                                                            {status == 1?(
+                                                                <>
+                                                                <GosuListComment2>진행중</GosuListComment2>
+                                                                <GosuListImg2 alt="고수 리스트 사진" src={`/images/triangle.png`}>
+                                                                </GosuListImg2>
+                                                                </>
+                                                                ):
+                                                            <>{status ==2?
+                                                                (<>
+                                                                    <GosuListComment2>진행완료</GosuListComment2><GosuListImg2 alt="고수 리스트 사진" src={`/images/circle.png`}></GosuListImg2></>):
+                                                                (<> <GosuListComment2>진행 전</GosuListComment2>
+                                                                    <GosuListImg2 alt="고수 리스트 사진" src={`/images/redCircle.jpg`}></GosuListImg2></>)
+                                                                }
+                                                                </>
+                                                            }
                                                     </FindGosu>
 
                                                     </>
@@ -207,6 +223,17 @@ const GosuListImg = styled.img`
   border: 1px solid gray;
   border-radius: 10px;
 `;
+const GosuListImg2 = styled.img`
+  display: flex;
+  position:absolute;
+  justify-content: right;
+  align-items: right;
+  width: 40px;
+  height: 40px;
+  // border: 1px solid gray;
+  border-radius: 50px;
+  right 30%;
+`;
 
 const GosuListForm = styled.div`
   display: flex;
@@ -246,4 +273,11 @@ const GosuListComment = styled.h3`
   margin-top: 20px;
   font-size: 15px;
   color: gray;
+`;
+const GosuListComment2 = styled.h3`
+  position : absolute;
+  right 33%;
+  
+  font-size: 15px;
+  color: #F2AA4C;
 `;

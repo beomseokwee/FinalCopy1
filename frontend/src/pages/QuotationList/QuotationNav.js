@@ -12,6 +12,10 @@ function QuotationNav ({gosuLists,setGosuLists,userLists,setUserLists,ids}) {
         window.location.href = `/GosuInfoDetail/${id}`;
     };
     return (
+        <>
+        {user_info &&
+        <>
+            {user_info.role == 'ROLE_USER' ?
         <GosuStickyNav>
             <NavTitle onClick={()=>{
                 console.log(ids)
@@ -73,9 +77,74 @@ function QuotationNav ({gosuLists,setGosuLists,userLists,setUserLists,ids}) {
             <>
 
             </>
-        </GosuStickyNav>
+        </GosuStickyNav>:
+                <GosuStickyNav>
+                    <NavTitle onClick={()=>{
+                        console.log(ids)
+                        fetch(`https://jsonplaceholder.typicode.com/posts`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                Authorization: localStorage.getItem('access_token'),
+                            },
+                            body: JSON.stringify(
+                                {email: localStorage.getItem('email')}
+                            )
+                        })
+                            .then(res => res.json())
+                            .then((res)=>  {
+                                console.log(res);
+                                let a = [{gosuName:'위범석',status:'1'},{gosuName: '범진성'}]
+                                setUserLists(a)
+                            });
+                    }}>{navList[0]}</NavTitle>
+                    <NavTitle onClick={()=>{
+                        fetch(`https://jsonplaceholder.typicode.com/posts`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                Authorization: localStorage.getItem('access_token'),
+                            },
+                            body: JSON.stringify(
+                                {email: localStorage.getItem('email')}
+                            )
+                        })
+                            .then(res => res.json())
+                            .then((res)=>  {
+                                console.log(res);
+                                let a = [{gosuName:'위범석',status:'1'},{gosuName: '범진성'}]
+                                setUserLists(a)
+                            });
+                    }
+                    }>{navList[1]}</NavTitle>
 
-    );
+                    <NavTitle onClick={()=>{
+                        fetch(`https://jsonplaceholder.typicode.com/posts`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                Authorization: localStorage.getItem('access_token'),
+                            },
+                            body: JSON.stringify(
+                                {email: localStorage.getItem('email')}
+                            )
+                        })
+                            .then(res => res.json())
+                            .then((res)=>  {
+                                console.log(res);
+                                let a = [{gosuName:'위범석',status:'1'},{gosuName: '범진성'}]
+                                setUserLists(a)
+                            });
+                    }}>{navList[2]}</NavTitle>
+                    <>
+
+                    </>
+                </GosuStickyNav>
+            }
+                </>
+}
+</>
+);
 }
 
 const GosuStickyNav = styled.ul`
