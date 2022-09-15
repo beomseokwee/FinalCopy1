@@ -5,7 +5,10 @@ export default function Footer() {
 
     if(window.location.pathname=='/signin'||
         window.location.pathname=='/signup'||
-        window.location.pathname=='/Gosu/SignUp')
+        window.location.pathname=='/Gosu/SignUp'||
+        window.location.pathname=="/ChatList"
+
+    )
         return null;
 
     return (

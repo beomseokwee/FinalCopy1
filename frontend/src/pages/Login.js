@@ -12,7 +12,7 @@ import * as S from './UserButton/UserFormBtnEle';
 
 const Login = (props) => {
     const REST_API_KEY = "46f056087e871bee8e632aab70ad7fc8"
-    const REDIRECT_URI = "http://13.209.67.178:3000/kakaoLogin"
+    const REDIRECT_URI = "http://13.209.99.47:3000/kakaoLogin"
     const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
     const dispatch = useDispatch();
     const history = useHistory();
@@ -83,8 +83,8 @@ const Login = (props) => {
                 <S.KakaoBtn
                     onClick={()=>{
                     window.location.href = KAKAO_AUTH_URL;
-                }}><img width='10%'
-
+                }}><img
+                        style={{position:"absolute",right:'56%',top:'41%',width:'40px'}}
                         src={'/images/kakao.png'} />카카오톡으로 로그인</S.KakaoBtn>
 
                 {/*<S.KakaoBtn>카카오톡으로 로그인</S.KakaoBtn>*/}

@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 function QuotationNav ({gosuLists,setGosuLists,userLists,setUserLists,ids}) {
     const navList = ['진행전', '진행중', `진행완료`];
     const user_info = useSelector((state) => state.user.user);
-
+    
     const goToGosuDetail = id => {
         window.location.href = `/GosuInfo/${id}`;
     };
@@ -19,59 +19,59 @@ function QuotationNav ({gosuLists,setGosuLists,userLists,setUserLists,ids}) {
         <GosuStickyNav>
             <NavTitle onClick={()=>{
                 console.log(ids)
-                fetch(`https://jsonplaceholder.typicode.com/posts`, {
+                fetch(`/matchedList/posts`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: localStorage.getItem('access_token'),
                     },
                     body: JSON.stringify(
-                        {email: localStorage.getItem('email')}
+                        {id: ids}
                     )
                 })
                     .then(res => res.json())
                     .then((res)=>  {
                         console.log(res);
-                        let a = [{gosuName:'위범석',status:'1'},{gosuName: '범진성'}]
-                        setGosuLists(a)
+                        // let a = [{gosuName:'위범석',status:'1'},{gosuName: '범진성'}]
+                        setGosuLists(res)
                     });
             }}>{navList[0]}</NavTitle>
             <NavTitle onClick={()=>{
-                fetch(`https://jsonplaceholder.typicode.com/posts`, {
+                fetch(`/matchedList/1`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: localStorage.getItem('access_token'),
                     },
                     body: JSON.stringify(
-                        {email: localStorage.getItem('email')}
+                        {id: ids}
                     )
                 })
                     .then(res => res.json())
                     .then((res)=>  {
                         console.log(res);
-                        let a = [{gosuName:'위범석',status:'1'},{gosuName: '범진성'}]
-                        setGosuLists(a)
+                        // let a = [{gosuName:'위범석',status:'1'},{gosuName: '범진성'}]
+                        setGosuLists(res)
                     });
             }
             }>{navList[1]}</NavTitle>
 
             <NavTitle onClick={()=>{
-                fetch(`https://jsonplaceholder.typicode.com/posts`, {
+                fetch(`/mathedList/2`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: localStorage.getItem('access_token'),
                     },
                     body: JSON.stringify(
-                        {email: localStorage.getItem('email')}
+                        {id: ids}
                     )
                 })
                     .then(res => res.json())
                     .then((res)=>  {
                         console.log(res);
-                        let a = [{gosuName:'위범석',status:'1'},{gosuName: '범진성'}]
-                        setGosuLists(a)
+                       //  let a = [{gosuName:'위범석',status:'1'},{gosuName: '범진성'}]
+                        setGosuLists(res)
                     });
             }}>{navList[2]}</NavTitle>
             <>
@@ -81,7 +81,7 @@ function QuotationNav ({gosuLists,setGosuLists,userLists,setUserLists,ids}) {
                 <GosuStickyNav>
                     <NavTitle onClick={()=>{
                         console.log(ids)
-                        fetch(`https://jsonplaceholder.typicode.com/posts`, {
+                        fetch(`/machedGosuList/0`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ function QuotationNav ({gosuLists,setGosuLists,userLists,setUserLists,ids}) {
                             });
                     }}>{navList[0]}</NavTitle>
                     <NavTitle onClick={()=>{
-                        fetch(`https://jsonplaceholder.typicode.com/posts`, {
+                        fetch(`/machedGosuList/1`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -119,7 +119,7 @@ function QuotationNav ({gosuLists,setGosuLists,userLists,setUserLists,ids}) {
                     }>{navList[1]}</NavTitle>
 
                     <NavTitle onClick={()=>{
-                        fetch(`https://jsonplaceholder.typicode.com/posts`, {
+                        fetch(`/machedGosuList/2`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',

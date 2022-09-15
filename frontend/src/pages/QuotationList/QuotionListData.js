@@ -11,7 +11,7 @@ function GosuList({ setReviewLength }) {
     const [ ids, setIds ] = useState([])
     const [gosuLists, setGosuLists] = useState([{gosuName:'위범석',status:'1'},{gosuName: '범진성'},{gosuName: '얍얍얍'}]);
     useEffect(() => {
-        fetch(`https://jsonplaceholder.typicode.com/posts`, {
+        fetch(`https://machedGosuList`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -24,11 +24,11 @@ function GosuList({ setReviewLength }) {
             .then(res => res.json())
             .then((res)=>  {
                 console.log(res);
-                let a = [{gosuName:'위범석',status:'1',id:1},{status:'2',gosuName: '범진성',id:2},{status:0,gosuName: '얍얍얍',id:3}]
+                // let a = [{gosuName:'위범석',status:'1',id:1},{status:'2',gosuName: '범진성',id:2},{status:0,gosuName: '얍얍얍',id:3}]
                 let b  = []
-                setGosuLists(a)
-                for (let i =0; i<a.length; i++){
-                    b.push(a[i].id)
+                setGosuLists(res)
+                for (let i =0; i<gosuLists.length; i++){
+                    b.push(res[i].id)
                 }
                 setIds(b)
                 console.log(ids)

@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import {actionCreators as userActions} from "../../../redux/modules/user";
 import {getCookie} from "../../../shared/Cookie";
 import {useParams} from "react-router-dom";
-const socket = io.connect("http://localhost:3001")
+const socket = io.connect("http://13.209.99.47:3001")
 
 function ChatApp({number}) {
     const [room, setRoom] = useState();

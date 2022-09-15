@@ -28,7 +28,7 @@ const loginDB = (id, password) => {
     return function (dispatch, getState, { history }) {
         axios({
             method: "post",
-            url: "/user/login",
+            url: "/user/signin",
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8'
             },
@@ -89,14 +89,14 @@ const loginCheckDB = () => {
             .then((res) => {
                 console.log(res);
                 console.log()
-                localStorage.setItem('email',res.headers.email)
-                localStorage.setItem('nickname',res.headers.name)
-                localStorage.setItem('role',res.headers.role)
+                localStorage.setItem('email',res.data.email)
+                localStorage.setItem('nickname',res.data.name)
+                localStorage.setItem('role',res.data.role)
                 dispatch(
                     setUser({
-                        email: res.headers.email,
-                        nickname: res.headers.name,
-                        role : res.headers.role,
+                        email: res.data.email,
+                        nickname: res.data.name,
+                        role : res.data.role,
                     })
                 );
             })

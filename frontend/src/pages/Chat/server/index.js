@@ -9,7 +9,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
-	    origin : "http://localhost:3000", // 통신할 주소
+	    origin : "http://13.209.99.47:3000", // 통신할 주소
         methods : ["GET","POST"],
     }
 });
